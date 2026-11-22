@@ -156,6 +156,10 @@
 <div class="container">
   <!-- HOME -->
   <div id="homeView" class="view active">
+  <!-- INSTALL APP (added): direct APK download, same folder as this page -->
+  <div id="installAppWrap" style="margin:0 0 12px 0;">
+    <a id="installAppBtn" class="btn-main" href="SDAOFFERINGSYSTEM.apk" download="SDAOFFERINGSYSTEM.apk" style="display:block; box-sizing:border-box; text-align:center; text-decoration:none; line-height:1.4;"><i class="fas fa-download"></i> INSTALL APP</a>
+  </div>
     <div class="card">
       <div class="search-bar"><input type="text" id="homeSearch" placeholder="🔍 Search Home..." onkeyup="filterHome()"></div>
       <h3>Monthly Overview</h3>
@@ -296,8 +300,6 @@
   <!-- FOOTER -->
   <div id="appFooter" style="margin-top:10px; padding:20px 0; border-top:1px solid #e2e8f0; text-align:center;">
     <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px;">
-      <!-- INSTALL APP: direct APK download (same folder on GitHub Pages) -->
-      <a id="installAppBtn" class="footer-btn" href="SDAOFFERINGSYSTEM.apk" download="SDAOFFERINGSYSTEM.apk" style="background:var(--primary); color:white; text-decoration:none; display:inline-block;"><i class="fas fa-download"></i> INSTALL APP</a>
       <button class="footer-btn" onclick="openModal('privacyModal')">Privacy Policy</button>
       <button class="footer-btn" onclick="openModal('contactModal')">Contact Us</button>
       <button class="footer-btn" onclick="openModal('aboutModal')">About Us</button>
@@ -1593,6 +1595,12 @@ async function deleteCalcHistoryEntry(id) {
   await idbDelete(STORE_CALC_HISTORY, id);
   refreshCalcHistory();
 }
+</script>
+<script>
+/* INSTALL APP (added): hide the button when already running as an installed app */
+(function(){try{var w=document.getElementById("installAppWrap");if(!w)return;
+var s=(window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches)||window.navigator.standalone===true;
+if(s)w.style.display="none";}catch(e){}})();
 </script>
 </body>
 </html>
